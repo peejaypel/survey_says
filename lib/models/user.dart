@@ -13,7 +13,7 @@ class User{
     return{
       'userId': userId,
       'username': username,
-      'password': password;
+      'password': password
     };
   }
 }
