@@ -8,4 +8,12 @@ class User{
     required this.username,
     required this.password
 });
+
+  Map<String, dynamic> toMap(){
+    return{
+      'userId': userId,
+      'username': username,
+      'password': password;
+    };
+  }
 }
