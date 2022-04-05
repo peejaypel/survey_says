@@ -1,8 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class Login extends StatelessWidget {
-  const Login({Key? key}) : super(key: key);
+class Login extends StatelessWidget {  const Login({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +22,7 @@ class Login extends StatelessWidget {
                 ],
               ),
               Container(
-                height: 20,
+                height: 40,
               ),
               Row(
                 children: const [
@@ -31,7 +30,8 @@ class Login extends StatelessWidget {
                     "Sign In",
                     overflow: TextOverflow.fade,
                     style: TextStyle(
-                        fontSize: 50,
+                      color: Colors.deepPurple,
+                        fontSize: 40,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -78,9 +78,10 @@ class Login extends StatelessWidget {
                   ],
                 ),
               ),
-              const Spacer(
-                flex: 5,
-              ),
+              // const Spacer(
+              //   flex: 5,
+              // ),
+              Row(),
             ],
           ),
         ),
