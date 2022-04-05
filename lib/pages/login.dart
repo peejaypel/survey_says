@@ -9,36 +9,53 @@ class Login extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 50, vertical: 30),
+          padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 30),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 //Logo
-                children: [Text("LOGO")],
+                children: const [
+                  Image(
+                      height: 75,
+                      image: AssetImage('assets/logo/surveysays.png'))
+                ],
               ),
-              // Spacer(
-              //   flex: 1,
-              // ),
+              Container(
+                height: 20,
+              ),
               Row(
-                children: [Text("Sign in")],
+                children: const [
+                  Text(
+                    "Sign In",
+                    overflow: TextOverflow.fade,
+                    style: TextStyle(
+                        fontSize: 50,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
               ),
               Row(children: const [
-                Text(
-                  "Get started by signing in",
-                  style: TextStyle(fontSize: 30),
+                Flexible(
+                  child: Text(
+                    "Enter with your existing account below.",
+                    overflow: TextOverflow.fade,
+                    style: TextStyle(fontSize: 15),
+                  ),
                 )
               ]),
               Container(
                 child: TextFormField(
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                       labelText: "Email", hintText: "john@doe.com"),
                 ),
               ),
               Container(
                 child: TextFormField(
                   obscureText: true,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: "Password",
                     hintText: "*******",
                   ),
@@ -47,21 +64,23 @@ class Login extends StatelessWidget {
               SizedBox(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
-                  children: [TextButton(
-                  onPressed: null,
-                  child: Text("Login"),
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(
-                        Colors.deepPurpleAccent),
-                    foregroundColor: MaterialStateProperty.all<Color>(
-                        Colors.white),
-                  ),
+                  children: [
+                    TextButton(
+                      onPressed: null,
+                      child: const Text("Login"),
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all<Color>(
+                            Colors.deepPurpleAccent),
+                        foregroundColor:
+                            MaterialStateProperty.all<Color>(Colors.white),
+                      ),
+                    ),
+                  ],
                 ),
-                ],),
               ),
-              // Spacer(
-              //   flex: 5,
-              // ),
+              const Spacer(
+                flex: 5,
+              ),
             ],
           ),
         ),
