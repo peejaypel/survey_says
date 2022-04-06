@@ -66,7 +66,7 @@ class Login extends StatelessWidget {
           ),
           SizedBox(
               child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                   TextButton(
                   onPressed: () {
@@ -87,6 +87,7 @@ class Login extends StatelessWidget {
     //   flex: 5,
     // ),
               Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   TextButton(
                     onPressed: () {
