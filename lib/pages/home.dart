@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:survey_says/pages/login.dart';
+import 'package:survey_says/pages/login2.dart';
 
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
@@ -11,7 +11,7 @@ class Home extends StatelessWidget {
         child: TextButton(
           onPressed: () {
             Navigator.pushReplacement(context,
-                MaterialPageRoute(builder: (BuildContext context) => Login()));
+                MaterialPageRoute(builder: (BuildContext context) => Login2()));
           },
           child: Text("Logout"),
         ));
