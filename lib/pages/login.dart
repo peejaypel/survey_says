@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:survey_says/pages/home.dart';
+import 'package:survey_says/pages/register.dart';
 
 class Login extends StatelessWidget {
   const Login({Key? key}) : super(key: key);
@@ -85,8 +86,20 @@ class Login extends StatelessWidget {
     // const Spacer(
     //   flex: 5,
     // ),
-    Row(),
-    ],
+              Row(
+                children: [
+                  TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (BuildContext context) => Register()));
+                    },
+                    child: const Text("Don't have an account?"),
+                  )
+                ],
+              ),
+            ],
     ),
     ),
     )
