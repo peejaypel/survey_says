@@ -70,6 +70,17 @@ class LoginSQLHelper{
     if (queryResult.isEmpty) return false;
     return true;
   }
+
+  Future<bool> login(User user) async{
+    Database? db = await database;
+    print("LOGGING IN is " + user.username);
+    var queryResult = await db!.rawQuery('SELECT * FROM users WHERE username="${user.username}"');
+    print(queryResult.asMap().entries.first.value["password"]);
+    if (queryResult.asMap().entries.first.value["password"] == user.password){
+      return true;
+    }
+    return false;
+  }
 }
 
 

@@ -1,11 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:survey_says/helpers/loginsql.dart';
+import 'package:survey_says/models/user.dart';
 import 'package:survey_says/pages/home.dart';
 import 'package:survey_says/pages/register.dart';
 
 class Login extends StatelessWidget {
-  const Login({Key? key}) : super(key: key);
-
+  Login({Key? key}) : super(key: key);
+  TextEditingController usernameController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,12 +54,14 @@ class Login extends StatelessWidget {
           ]),
           Container(
             child: TextFormField(
+              controller: usernameController,
               decoration: const InputDecoration(
-                  labelText: "Email", hintText: "john@doe.com"),
+                  labelText: "Username", hintText: "johndoe"),
             ),
           ),
           Container(
             child: TextFormField(
+              controller: passwordController,
               obscureText: true,
               decoration: const InputDecoration(
                 labelText: "Password",
@@ -69,8 +74,17 @@ class Login extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                   TextButton(
-                  onPressed: () {
-          Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => Home()));
+                  onPressed: () async {
+                    User user = User(username: usernameController.text, password: passwordController.text);
+                    if (await LoginSQLHelper.instance.hasUser(user)){
+                      if (await LoginSQLHelper.instance.login(user)){
+                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => Home()));
+                      } else {
+                        _showMyDialog(context, "invalid credentials");
+                      }
+                    } else {
+                      _showMyDialog(context, "user does not exist");
+                    }
           },
               child: const Text("Login"),
           style: ButtonStyle(
@@ -107,4 +121,31 @@ class Login extends StatelessWidget {
     ,
     );
   }
+}
+
+Future<void> _showMyDialog(BuildContext context, String text) async {
+  return showDialog<void>(
+    context: context,
+    barrierDismissible: false, // user must tap button!
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: const Text('warning!!!!'),
+        content: SingleChildScrollView(
+          child: ListBody(
+            children: <Widget>[
+              Text('$text'),
+            ],
+          ),
+        ),
+        actions: <Widget>[
+          TextButton(
+            child: const Text('k'),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+        ],
+      );
+    },
+  );
 }
