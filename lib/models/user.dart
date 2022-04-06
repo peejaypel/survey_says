@@ -1,17 +1,15 @@
 class User{
-  final int userId;
+  int? userId;
   final String username;
   final String password;
 
-  const User({
-    required this.userId,
+  User({
     required this.username,
-    required this.password
+    required this.password,
 });
 
   Map<String, dynamic> toMap(){
     return{
-      'userId': userId,
       'username': username,
       'password': password
     };
