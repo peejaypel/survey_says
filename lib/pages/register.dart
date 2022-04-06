@@ -63,6 +63,7 @@ class _RegisterState extends State<Register> {
                       password: passwordController.text);
                   if (await loginHelper.hasUser(user)) {
                     print("has user!");
+                    _showMyDialog(context, "user already exists na po");
                   } else {
                     print("registered");
                     Navigator.pushReplacement(
@@ -92,4 +93,31 @@ class _RegisterState extends State<Register> {
       ),
     );
   }
+}
+
+Future<void> _showMyDialog(BuildContext context, String text) async {
+  return showDialog<void>(
+    context: context,
+    barrierDismissible: false, // user must tap button!
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: const Text('warning!!!!'),
+        content: SingleChildScrollView(
+          child: ListBody(
+            children: <Widget>[
+              Text('$text'),
+            ],
+          ),
+        ),
+        actions: <Widget>[
+          TextButton(
+            child: const Text('k'),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+        ],
+      );
+    },
+  );
 }
