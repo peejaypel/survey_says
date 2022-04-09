@@ -180,7 +180,7 @@ class Login extends StatelessWidget {
       barrierDismissible: false, // user must tap button!
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('warning!!!!'),
+          title: const Text('Login Error'),
           content: SingleChildScrollView(
             child: ListBody(
               children: <Widget>[
@@ -190,7 +190,7 @@ class Login extends StatelessWidget {
           ),
           actions: <Widget>[
             TextButton(
-              child: const Text('k'),
+              child: const Text('Okay'),
               onPressed: () {
                 Navigator.of(context).pop();
               },
