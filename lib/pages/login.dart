@@ -8,7 +8,7 @@ import 'home.dart';
 
 class Login extends StatelessWidget {
   Login({Key? key}) : super(key: key);
-  TextEditingController usernameController = TextEditingController();
+  TextEditingController emailAddressController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
   @override
@@ -93,6 +93,7 @@ class Login extends StatelessWidget {
                     padding: const EdgeInsets.fromLTRB(0, 4, 0, 12),
                     child: Container(
                       child: TextFormField(
+                        controller: emailAddressController,
                         decoration: const InputDecoration(
                             fillColor: Colors.white,
                             enabledBorder: OutlineInputBorder(
@@ -110,6 +111,7 @@ class Login extends StatelessWidget {
                     padding: const EdgeInsets.fromLTRB(0, 4, 0, 12),
                     child: Container(
                       child: TextFormField(
+                        controller: passwordController,
                         obscureText: true,
                         decoration: const InputDecoration(
                           fillColor: Colors.white,
@@ -134,7 +136,7 @@ class Login extends StatelessWidget {
                         child: TextButton(
                           onPressed: () async {
                             User user = User(
-                                emailAddress: usernameController.text,
+                                emailAddress: emailAddressController.text,
                                 password: passwordController.text);
                             if (await LoginSQLHelper.instance.hasUser(user)) {
                               if (await LoginSQLHelper.instance.login(user)) {
