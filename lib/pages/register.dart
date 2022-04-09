@@ -1,99 +1,261 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:survey_says/helpers/loginsql.dart';
-import 'package:survey_says/models/user.dart';
-import 'package:survey_says/pages/home.dart';
 
-class Register extends StatefulWidget {
-  const Register({Key? key}) : super(key: key);
+import '../models/user.dart';
+import '../helpers/loginsql.dart';
+import 'home.dart';
 
-  @override
-  _RegisterState createState() => _RegisterState();
-}
-
-class _RegisterState extends State<Register> {
+class Register extends StatelessWidget {
+  Register({Key? key}) : super(key: key);
   final LoginSQLHelper loginHelper = LoginSQLHelper.instance;
-  final usernameController = TextEditingController();
+  final emailAddressController = TextEditingController();
   final passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      body: SafeArea(
-        child: Container(
-          padding: EdgeInsets.symmetric(vertical: 20, horizontal: 50),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Spacer(flex: 1),
-              Row(
-                children: const [
-                  Text(
-                    "Register",
-                    style: TextStyle(
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold,
+      body: Container(
+        color: Colors.white,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Column(children: [
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Column(children: [
+                  Row(children: [
+                    Image.asset("assets/logo/surveysays_black.png", height: 80)
+                  ]),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 32, 0, 0),
+                    child: Container(
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Container(
+                                width: 140,
+                                height: 50,
+                                child: TextButton(
+                                  onPressed: () => Navigator.of(context).pop(),
+                                  child: const Text("Sign In",
+                                      style: TextStyle(
+                                          fontFamily: "Lexend Deca",
+                                          color: Color(0xFF95A1AC),
+                                          fontSize: 28,
+                                          fontWeight: FontWeight.w700)),
+                                  style: ButtonStyle(
+                                    alignment: Alignment.centerLeft, // <-- had to set alignment
+                                    padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+                                      const EdgeInsets.all(0.0), // <-- had to set padding to 0
+                                    ),
+                                  ),
+                                )),
+                            Container(
+                              width: 140,
+                              height: 50,
+                              child: TextButton(
+                                onPressed: null,
+                                child: const Text("Sign Up",
+                                    style: TextStyle(
+                                        fontFamily: "Lexend Deca",
+                                        color: Colors.black,
+                                        fontSize: 28,
+                                        fontWeight: FontWeight.w500)),
+                                style: ButtonStyle(
+                                  alignment: Alignment.centerLeft, // <-- had to set alignment
+                                  padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+                                    const EdgeInsets.all(0.0), // <-- had to set padding to 0
+                                  ),
+                                ),
+
+                              ),
+                            )
+                          ]),
                     ),
                   ),
-                ],
-              ),
-              Container(
-                child: TextFormField(
-                  controller: usernameController,
-                  decoration: const InputDecoration(
-                    labelText: "Name",
-                    hintText: "John Doe",
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 24),
+                    child: Row(children: const [
+                      Text("Get started by creating an account below",
+                          style: TextStyle(
+                              fontFamily: "Lexend Deca",
+                              color: Color(0xFF57636C),
+                              fontSize: 14,
+                              fontWeight: FontWeight.w400))
+                    ]),
                   ),
-                ),
-              ),
-              Container(
-                child: TextFormField(
-                  controller: passwordController,
-                  obscureText: true,
-                  decoration: const InputDecoration(
-                    labelText: "Password",
-                    hintText: "*******",
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 4, 0, 12),
+                    child: Container(
+                      child: TextFormField(
+                        controller: emailAddressController,
+                        decoration: const InputDecoration(
+                            fillColor: Colors.white,
+                            enabledBorder: OutlineInputBorder(
+                              // width: 0.0 produces a thin "hairline" border
+                              borderSide: BorderSide(
+                                  color: Color(0xFFDBE2E7), width: 0.0),
+                            ),
+                            border: OutlineInputBorder(),
+                            labelText: "Your email address...",
+                            hintText: "Enter your email..."),
+                      ),
+                    ),
                   ),
-                ),
-              ),
-              TextButton(
-                onPressed: () async {
-                  User user = User(
-                      username: usernameController.text,
-                      password: passwordController.text);
-                  if (await loginHelper.hasUser(user)) {
-                    print("has user!");
-                    _showMyDialog(context, "user already exists na po");
-                  } else {
-                    print("registered");
-                    Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                            builder: (BuildContext context) => Home()));
-                    loginHelper.addUser(user);
-                  }
-                },
-                child: Text("Register"),
-              ),
-              Row(
-                children: [
-                  TextButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    child: const Text("Already have an account?"),
-                  )
-                ],
-              ),
-              Row(),
-              Spacer(flex: 1),
-            ],
-          ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 4, 0, 12),
+                    child: Container(
+                      child: TextFormField(
+                        controller: passwordController,
+                        obscureText: true,
+                        decoration: const InputDecoration(
+                          fillColor: Colors.white,
+                          enabledBorder: OutlineInputBorder(
+                            // width: 0.0 produces a thin "hairline" border
+                            borderSide: BorderSide(
+                                color: Color(0xFFDBE2E7), width: 0.0),
+                          ),
+                          border: OutlineInputBorder(),
+                          labelText: "Password",
+                          hintText: "Enter your password...",
+                        ),
+                      ),
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      SizedBox(
+                        width: 150,
+                        height: 50,
+                        child: TextButton(
+                          onPressed: () async {
+                            User user = User(
+                                emailAddress: emailAddressController.text,
+                                password: passwordController.text);
+                            if (await loginHelper.hasUser(user)) {
+                              print("Email address already registered");
+                              _showMyDialog(
+                                  context, "Email address already registered");
+                            } else {
+                              print("Registered");
+                              Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (BuildContext context) =>
+                                          Home()));
+                              loginHelper.addUser(user);
+                            }
+                          },
+                          child: const Text("Register"),
+                          style: ButtonStyle(
+                            shape: MaterialStateProperty.all(
+                                RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(40.0),
+                            )),
+                            backgroundColor: MaterialStateProperty.all<Color>(
+                                const Color(0xFF090F13)),
+                            foregroundColor:
+                                MaterialStateProperty.all<Color>(Colors.white),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ]),
+              )
+            ]),
+          ],
         ),
       ),
     );
   }
 }
+
+// class _RegisterState extends State<Register> {
+//   final LoginSQLHelper loginHelper = LoginSQLHelper.instance;
+//   final usernameController = TextEditingController();
+//   final passwordController = TextEditingController();
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       backgroundColor: Colors.white,
+//       body: SafeArea(
+//         child: Container(
+//           padding: EdgeInsets.symmetric(vertical: 20, horizontal: 50),
+//           child: Column(
+//             mainAxisAlignment: MainAxisAlignment.start,
+//             children: [
+//               Spacer(flex: 1),
+//               Row(
+//                 children: const [
+//                   Text(
+//                     "Register",
+//                     style: TextStyle(
+//                       fontSize: 30,
+//                       fontWeight: FontWeight.bold,
+//                     ),
+//                   ),
+//                 ],
+//               ),
+//               Container(
+//                 child: TextFormField(
+//                   controller: usernameController,
+//                   decoration: const InputDecoration(
+//                     labelText: "Name",
+//                     hintText: "John Doe",
+//                   ),
+//                 ),
+//               ),
+//               Container(
+//                 child: TextFormField(
+//                   controller: passwordController,
+//                   obscureText: true,
+//                   decoration: const InputDecoration(
+//                     labelText: "Password",
+//                     hintText: "*******",
+//                   ),
+//                 ),
+//               ),
+//               TextButton(
+//                 onPressed: () async {
+//                   User user = User(
+//                       emailAddress: usernameController.text,
+//                       password: passwordController.text);
+//                   if (await loginHelper.hasUser(user)) {
+//                     print("has user!");
+//                     _showMyDialog(context, "user already exists na po");
+//                   } else {
+//                     print("registered");
+//                     Navigator.pushReplacement(
+//                         context,
+//                         MaterialPageRoute(
+//                             builder: (BuildContext context) => Home()));
+//                     loginHelper.addUser(user);
+//                   }
+//                 },
+//                 child: Text("Register"),
+//               ),
+//               Row(
+//                 children: [
+//                   TextButton(
+//                     onPressed: () {
+//                       Navigator.pop(context);
+//                     },
+//                     child: const Text("Already have an account?"),
+//                   )
+//                 ],
+//               ),
+//               Row(),
+//               Spacer(flex: 1),
+//             ],
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }
 
 Future<void> _showMyDialog(BuildContext context, String text) async {
   return showDialog<void>(
@@ -111,7 +273,7 @@ Future<void> _showMyDialog(BuildContext context, String text) async {
         ),
         actions: <Widget>[
           TextButton(
-            child: const Text('k'),
+            child: const Text('Okay'),
             onPressed: () {
               Navigator.of(context).pop();
             },

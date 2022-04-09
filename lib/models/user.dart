@@ -1,16 +1,16 @@
 class User{
   int? userId;
-  final String username;
+  final String emailAddress;
   final String password;
 
   User({
-    required this.username,
+    required this.emailAddress,
     required this.password,
 });
 
-  Map<String, dynamic> toMap(){
+  Map<String, String> toMap(){
     return{
-      'username': username,
+      'username': emailAddress,
       'password': password
     };
   }

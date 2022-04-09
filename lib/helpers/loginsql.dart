@@ -1,9 +1,5 @@
 import 'dart:async';
-
-import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
-import 'package:flutter/widgets.dart';
-
 import '../models/user.dart';
 
 class LoginSQLHelper{
@@ -55,7 +51,7 @@ class LoginSQLHelper{
 
     return List.generate(maps.length, (i) {
       return User(
-        username: maps[i]['username'],
+        emailAddress: maps[i]['username'],
         password: maps[i]['password'],
       );
     });
@@ -64,8 +60,8 @@ class LoginSQLHelper{
   //check if user exists using username
   Future<bool> hasUser(User user) async{
     Database? db = await database;
-    print("username is " + user.username);
-    var queryResult = await db!.rawQuery('SELECT * FROM users WHERE username="${user.username}"');
+    print("username is " + user.emailAddress);
+    var queryResult = await db!.rawQuery('SELECT * FROM users WHERE username="${user.emailAddress}"');
     print("ABCDEFG");
     if (queryResult.isEmpty) return false;
     return true;
@@ -73,8 +69,8 @@ class LoginSQLHelper{
 
   Future<bool> login(User user) async{
     Database? db = await database;
-    print("LOGGING IN is " + user.username);
-    var queryResult = await db!.rawQuery('SELECT * FROM users WHERE username="${user.username}"');
+    print("LOGGING IN is " + user.emailAddress);
+    var queryResult = await db!.rawQuery('SELECT * FROM users WHERE username="${user.emailAddress}"');
     print(queryResult.asMap().entries.first.value["password"]);
     if (queryResult.asMap().entries.first.value["password"] == user.password){
       return true;
