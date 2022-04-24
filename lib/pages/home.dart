@@ -84,6 +84,7 @@ class _HomeState extends State<Home> {
     return Scaffold(
       backgroundColor: Colors.deepPurple[900],
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: const Text('Survey Says'),
       ),
 
