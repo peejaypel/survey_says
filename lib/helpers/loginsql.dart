@@ -16,10 +16,11 @@ class LoginSQLHelper{
     return _database;
   }
 
+  //erorr on survey says db new version
   _initDatabase() async {
-    String path = 'surveysays_database.db';
+    String path = 'surveysays.db';
     return await openDatabase(path,
-        version: 1,
+        version: 3,
         onCreate: _onCreate);
   }
 
@@ -27,7 +28,7 @@ class LoginSQLHelper{
     await db.execute(
       'CREATE TABLE users('
           'userId INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, '
-          'username TEXT, '
+          'email TEXT, '
           'password TEXT)',
     );
     print("LoginSQL: TABLE CREATED");
@@ -51,7 +52,7 @@ class LoginSQLHelper{
 
     return List.generate(maps.length, (i) {
       return User(
-        emailAddress: maps[i]['username'],
+        email: maps[i]['email'],
         password: maps[i]['password'],
       );
     });
@@ -60,17 +61,17 @@ class LoginSQLHelper{
   //check if user exists using username
   Future<bool> hasUser(User user) async{
     Database? db = await database;
-    print("username is " + user.emailAddress);
-    var queryResult = await db!.rawQuery('SELECT * FROM users WHERE username="${user.emailAddress}"');
-    print("ABCDEFG");
+    print("hasUser(): Email is " + user.email);
+    var queryResult = await db!.rawQuery('SELECT * FROM users WHERE email ="${user.email}"');
     if (queryResult.isEmpty) return false;
     return true;
   }
 
   Future<bool> login(User user) async{
     Database? db = await database;
-    print("LOGGING IN is " + user.emailAddress);
-    var queryResult = await db!.rawQuery('SELECT * FROM users WHERE username="${user.emailAddress}"');
+    print("LOGGING IN is " + user.email);
+    // var queryResult = await db!.rawQuery('DROP TABLE IF EXISTS users');
+    var queryResult = await db!.rawQuery('SELECT * FROM users WHERE email ="${user.email}"');
     print(queryResult.asMap().entries.first.value["password"]);
     if (queryResult.asMap().entries.first.value["password"] == user.password){
       return true;

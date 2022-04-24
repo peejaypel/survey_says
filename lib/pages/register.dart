@@ -3,12 +3,11 @@ import 'package:flutter/material.dart';
 
 import '../models/user.dart';
 import '../helpers/loginsql.dart';
-import 'home.dart';
 
 class Register extends StatelessWidget {
   Register({Key? key}) : super(key: key);
   final LoginSQLHelper loginHelper = LoginSQLHelper.instance;
-  final emailAddressController = TextEditingController();
+  final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
   @override
@@ -88,7 +87,7 @@ class Register extends StatelessWidget {
                     padding: const EdgeInsets.fromLTRB(0, 4, 0, 12),
                     child: Container(
                       child: TextFormField(
-                        controller: emailAddressController,
+                        controller: emailController,
                         decoration: const InputDecoration(
                             fillColor: Colors.white,
                             enabledBorder: OutlineInputBorder(
@@ -131,20 +130,16 @@ class Register extends StatelessWidget {
                         child: TextButton(
                           onPressed: () async {
                             User user = User(
-                                emailAddress: emailAddressController.text,
+                                email: emailController.text,
                                 password: passwordController.text);
                             if (await loginHelper.hasUser(user)) {
                               print("Email address already registered");
                               _showMyDialog(
                                   context, "Email address already registered");
                             } else {
-                              print("Registered");
-                              Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (BuildContext context) =>
-                                          Home()));
                               loginHelper.addUser(user);
+                              print("Registered");
+                              Navigator.of(context).pop();
                             }
                           },
                           child: const Text("Register"),

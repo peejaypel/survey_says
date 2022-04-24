@@ -7,9 +7,26 @@ import '../models/user.dart';
 import 'home.dart';
 
 class Login extends StatelessWidget {
+
+  // make this a singleton class
+  Login._privateConstructor();
+  static final Login instance = Login._privateConstructor();
+
   Login({Key? key}) : super(key: key);
-  TextEditingController emailAddressController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  static User? currentUser;
+
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is disposed.
+    emailController.dispose();
+    passwordController.dispose();
+  }
+
+  User? get thisUser{
+    return currentUser;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -93,7 +110,7 @@ class Login extends StatelessWidget {
                     padding: const EdgeInsets.fromLTRB(0, 4, 0, 12),
                     child: Container(
                       child: TextFormField(
-                        controller: emailAddressController,
+                        controller: emailController,
                         decoration: const InputDecoration(
                             fillColor: Colors.white,
                             enabledBorder: OutlineInputBorder(
@@ -136,10 +153,11 @@ class Login extends StatelessWidget {
                         child: TextButton(
                           onPressed: () async {
                             User user = User(
-                                emailAddress: emailAddressController.text,
+                                email: emailController.text,
                                 password: passwordController.text);
                             if (await LoginSQLHelper.instance.hasUser(user)) {
                               if (await LoginSQLHelper.instance.login(user)) {
+                                currentUser = user;
                                 Navigator.pushReplacement(
                                     context,
                                     MaterialPageRoute(
