@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:survey_says/pages/login.dart';
 
 class Home extends StatefulWidget {
-  const Home({Key? key}) : super(key: key);
+  Home({Key? key}) : super(key: key);
 
   @override
   State<Home> createState() => _HomeState();
 }
 
 class _HomeState extends State<Home> {
+  Login login = Login.instance;
   int _selectedIndex = 0;
 
   void _onItemTapped(int index) {
@@ -39,11 +40,11 @@ class _HomeState extends State<Home> {
               padding: const EdgeInsets.all(20),
 
               child: Row(
-                children: const [
+                children: [
                   CircleAvatar(backgroundImage: AssetImage('logo/surveysays_black.png'),radius: 30,),
                   Padding(
                     padding: EdgeInsets.all(8.0),
-                    child: Text('insert name/email here'),
+                    child: Text(login.thisUser?.email?? "Guest"),
                   )
                 ],
               ),
@@ -233,4 +234,5 @@ class SurveyInfo extends StatelessWidget {
 
     );
   }
+
 }
