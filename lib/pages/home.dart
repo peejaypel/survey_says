@@ -25,16 +25,15 @@ class _HomeState extends State<Home> {
       ListView(
         children: [
           SurveyCard(
-            img: const AssetImage('logo/surveysays_black.png'),
+            img: const AssetImage('assets/cathryn-santos.jpg'),
             school: 'CIIT',
             name: 'Cathryn Santos',
-            title:
-                'CIIT Presidential Mock Elections',
+            title: 'CIIT Presidential Mock Elections',
             //https://docs.google.com/forms/d/e/1FAIpQLSdYi315soEV0TroQWO9FZ-xy0TaqBYd8ufUNqka_ysHAJn9kQ/viewform
             context: context,
           ),
           SurveyCard(
-            img: const AssetImage('logo/surveysays_black.png'),
+            img: const AssetImage('assets/ropher.jpg'),
             school: 'YouTube(Public)',
             name: 'Ropher',
             title: 'CryptoBread Cryptocurrency Survey',
@@ -42,29 +41,26 @@ class _HomeState extends State<Home> {
             context: context,
           ),
           SurveyCard(
-            img: const AssetImage('logo/surveysays_black.png'),
+            img: const AssetImage('assets/eder-chua.jpg'),
             school: 'CIIT',
             name: 'Eder Junior Chua',
-            title:
-            'Social Life of Students During the Pandemic',
+            title: 'Social Life of Students During the Pandemic',
             //https://docs.google.com/forms/d/e/1FAIpQLSfT8JMiLP8AXRa_lmFdr-WZQJVafbGD1dsR8-5OdXP_xoH6_Q/viewform
             context: context,
           ),
           SurveyCard(
-            img: const AssetImage('logo/surveysays_black.png'),
+            img: const AssetImage('assets/patrick-pelicano.jpg'),
             school: 'CIIT',
             name: 'Patrick Jade Pelicano',
-            title:
-            'PC Building Survey',
+            title: 'PC Building Survey',
             //https://docs.google.com/forms/d/e/1FAIpQLSfIFaJxTbSnK3FFWNcPN7bBOtvXT-PclRKeUZfYsFHdJCswTQ/viewform
             context: context,
           ),
           SurveyCard(
-            img: const AssetImage('logo/surveysays_black.png'),
+            img: const AssetImage('assets/eder-chua.jpg'),
             school: 'CIIT (Syntax Members)',
             name: 'Eder Junior Chua',
-            title:
-            'Survey for the Upcoming Code Sessions',
+            title: 'Survey for the Upcoming Code Sessions',
             //https://docs.google.com/forms/d/e/1FAIpQLSf_Bup_hipErwmAF-d2qVJ_KRaNcGFe_7Hmd19gGKEBcY06oA/viewform
             context: context,
           ),
@@ -83,7 +79,7 @@ class _HomeState extends State<Home> {
               child: Row(
                 children: [
                   CircleAvatar(
-                    backgroundImage: AssetImage('logo/surveysays_black.png'),
+                    backgroundImage: AssetImage('assets/eder-chua.jpg'),
                     radius: 30,
                   ),
                   Padding(
@@ -104,10 +100,12 @@ class _HomeState extends State<Home> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 20),
               child: TextButton(
-                onPressed: () => Navigator.of(context).pop()
-                      // MaterialPageRoute(
-                      //     builder: (BuildContext context) => Login()));
-                ,
+                onPressed: () {
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (BuildContext context) => Login()));
+                },
                 child: const SizedBox(
                   width: double.infinity,
                   height: 50,
