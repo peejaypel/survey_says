@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 
 import '../models/user.dart';
 import '../helpers/loginsql.dart';
-import 'home.dart';
 
 class Register extends StatelessWidget {
   Register({Key? key}) : super(key: key);
@@ -138,13 +137,9 @@ class Register extends StatelessWidget {
                               _showMyDialog(
                                   context, "Email address already registered");
                             } else {
-                              print("Registered");
-                              Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (BuildContext context) =>
-                                          Home()));
                               loginHelper.addUser(user);
+                              print("Registered");
+                              Navigator.of(context).pop();
                             }
                           },
                           child: const Text("Register"),
