@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:survey_says/pages/login.dart';
 
 class Home extends StatefulWidget {
@@ -298,7 +299,8 @@ class SurveyInfo extends StatelessWidget {
                   ),
                 ],
               ),
-              Expanded(
+              Container(
+                height: 400,
                 child: Padding(
                   padding: const EdgeInsets.only(top: 15),
                     child:InAppWebView(
@@ -307,6 +309,19 @@ class SurveyInfo extends StatelessWidget {
                       ),
                     )
                 ),
+              ),
+              Container(
+                  child:
+                    Padding(
+                      padding: const EdgeInsets.only(top: 20),
+                      child: SizedBox(
+                        width: double.infinity,
+                        child: ElevatedButton(
+                          onPressed: () => _launchUrl(Uri.parse(url)),
+                          child: Text('Open in Browser'),
+                        ),
+                      ),
+                    ),
               )
             ],
           ),
@@ -314,4 +329,7 @@ class SurveyInfo extends StatelessWidget {
       ),
     );
   }
+}
+_launchUrl(Uri _url) async {
+  if (!await launchUrl(_url)) throw 'Could not launch $_url';
 }
