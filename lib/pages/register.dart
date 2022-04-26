@@ -137,12 +137,14 @@ class Register extends StatelessWidget {
                                     password: passwordController.text);
                                 if (await loginHelper.hasUser(user)) {
                                   print("Email address already registered");
-                                  _showMyDialog(
-                                      context, "Email address already registered");
+                                  _showMyDialog(context, "Email address already registered");
+                                } else if (emailController.text=="" || passwordController.text=="") {
+                                  print("Missing field/s");
+                                  _showMyDialog(context, "Missing field/s");
                                 } else {
-                                  loginHelper.addUser(user);
-                                  print("Registered");
-                                  Navigator.of(context).pop();
+                                loginHelper.addUser(user);
+                                print("Registered");
+                                Navigator.of(context).pop();
                                 }
                               },
                               child: const Text("Register"),
