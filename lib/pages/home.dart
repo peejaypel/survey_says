@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:survey_says/pages/login.dart';
 
 class Home extends StatefulWidget {
@@ -29,7 +30,7 @@ class _HomeState extends State<Home> {
             school: 'CIIT',
             name: 'Cathryn Santos',
             title: 'CIIT Presidential Mock Elections',
-            //https://docs.google.com/forms/d/e/1FAIpQLSdYi315soEV0TroQWO9FZ-xy0TaqBYd8ufUNqka_ysHAJn9kQ/viewform
+            url:'https://docs.google.com/forms/d/e/1FAIpQLSdYi315soEV0TroQWO9FZ-xy0TaqBYd8ufUNqka_ysHAJn9kQ/viewform',
             context: context,
           ),
           SurveyCard(
@@ -37,7 +38,7 @@ class _HomeState extends State<Home> {
             school: 'YouTube(Public)',
             name: 'Ropher',
             title: 'CryptoBread Cryptocurrency Survey',
-            //https://docs.google.com/forms/d/e/1FAIpQLSfaKGLCtZE1PBrGhe99kfUkJKEyDPQJIuNguhNZfBbSuaJLyQ/viewform
+            url:'https://docs.google.com/forms/d/e/1FAIpQLSfaKGLCtZE1PBrGhe99kfUkJKEyDPQJIuNguhNZfBbSuaJLyQ/viewform',
             context: context,
           ),
           SurveyCard(
@@ -45,7 +46,7 @@ class _HomeState extends State<Home> {
             school: 'CIIT',
             name: 'Eder Junior Chua',
             title: 'Social Life of Students During the Pandemic',
-            //https://docs.google.com/forms/d/e/1FAIpQLSfT8JMiLP8AXRa_lmFdr-WZQJVafbGD1dsR8-5OdXP_xoH6_Q/viewform
+            url:'https://docs.google.com/forms/d/e/1FAIpQLSfT8JMiLP8AXRa_lmFdr-WZQJVafbGD1dsR8-5OdXP_xoH6_Q/viewform',
             context: context,
           ),
           SurveyCard(
@@ -53,7 +54,7 @@ class _HomeState extends State<Home> {
             school: 'CIIT',
             name: 'Patrick Jade Pelicano',
             title: 'PC Building Survey',
-            //https://docs.google.com/forms/d/e/1FAIpQLSfIFaJxTbSnK3FFWNcPN7bBOtvXT-PclRKeUZfYsFHdJCswTQ/viewform
+            url:'https://docs.google.com/forms/d/e/1FAIpQLSfIFaJxTbSnK3FFWNcPN7bBOtvXT-PclRKeUZfYsFHdJCswTQ/viewform',
             context: context,
           ),
           SurveyCard(
@@ -61,7 +62,7 @@ class _HomeState extends State<Home> {
             school: 'CIIT (Syntax Members)',
             name: 'Eder Junior Chua',
             title: 'Survey for the Upcoming Code Sessions',
-            //https://docs.google.com/forms/d/e/1FAIpQLSf_Bup_hipErwmAF-d2qVJ_KRaNcGFe_7Hmd19gGKEBcY06oA/viewform
+            url:'https://docs.google.com/forms/d/e/1FAIpQLSf_Bup_hipErwmAF-d2qVJ_KRaNcGFe_7Hmd19gGKEBcY06oA/viewform',
             context: context,
           ),
         ],
@@ -154,6 +155,7 @@ class SurveyCard extends Card {
   final String school;
   final String name;
   final String title;
+  final String url;
   final BuildContext context;
 
   const SurveyCard(
@@ -162,6 +164,7 @@ class SurveyCard extends Card {
       required this.school,
       required this.name,
       required this.title,
+      required this.url,
       required this.context})
       : super(key: key);
 
@@ -231,6 +234,7 @@ class SurveyCard extends Card {
                       school: school,
                       name: name,
                       title: title,
+                      url: url,
                     )),
           );
         },
@@ -242,13 +246,15 @@ class SurveyInfo extends StatelessWidget {
   final String school;
   final String name;
   final String title;
+  final String url;
 
   const SurveyInfo(
       {Key? key,
       required this.img,
       required this.school,
       required this.name,
-      required this.title})
+      required this.title,
+      required this.url})
       : super(key: key);
 
   @override
@@ -292,6 +298,16 @@ class SurveyInfo extends StatelessWidget {
                   ),
                 ],
               ),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 15),
+                    child:InAppWebView(
+                      initialUrlRequest: URLRequest(
+                          url: Uri.parse(url)
+                      ),
+                    )
+                ),
+              )
             ],
           ),
         ),
