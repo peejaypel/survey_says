@@ -120,30 +120,33 @@ class _HomeState extends State<Home> {
       ),
     ];
 
-    return Scaffold(
-      backgroundColor: Colors.deepPurple[900],
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        title: const Text('Survey Says'),
-      ),
-      body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: 'Settings',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        unselectedItemColor: Colors.black45,
-        selectedItemColor: Colors.deepPurpleAccent,
-        onTap: _onItemTapped,
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: Scaffold(
+        backgroundColor: Colors.deepPurple[900],
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          title: const Text('Survey Says'),
+        ),
+        body: Center(
+          child: _widgetOptions.elementAt(_selectedIndex),
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: 'Home',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.settings),
+              label: 'Settings',
+            ),
+          ],
+          currentIndex: _selectedIndex,
+          unselectedItemColor: Colors.black45,
+          selectedItemColor: Colors.deepPurpleAccent,
+          onTap: _onItemTapped,
+        ),
       ),
     );
   }
