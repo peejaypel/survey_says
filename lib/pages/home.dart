@@ -318,7 +318,7 @@ class SurveyInfo extends StatelessWidget {
                 ],
               ),
               Container(
-                height: 500,
+                height: 300,
                 child: Padding(
                   padding: const EdgeInsets.only(top: 15),
                     child:InAppWebView(
