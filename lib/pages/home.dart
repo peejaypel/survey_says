@@ -24,50 +24,61 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     //Switch Home <> Settings
     final List<Widget> _widgetOptions = <Widget>[
-      ListView(
-        children: [
-          SurveyCard(
-            img: const AssetImage('assets/cathryn-santos.jpg'),
-            school: 'CIIT',
-            name: 'Cathryn Santos',
-            title: 'CIIT Presidential Mock Elections',
-            url:'https://docs.google.com/forms/d/e/1FAIpQLSdYi315soEV0TroQWO9FZ-xy0TaqBYd8ufUNqka_ysHAJn9kQ/viewform',
-            context: context,
-          ),
-          SurveyCard(
-            img: const AssetImage('assets/ropher.jpg'),
-            school: 'YouTube(Public)',
-            name: 'Ropher',
-            title: 'CryptoBread Cryptocurrency Survey',
-            url:'https://docs.google.com/forms/d/e/1FAIpQLSfaKGLCtZE1PBrGhe99kfUkJKEyDPQJIuNguhNZfBbSuaJLyQ/viewform',
-            context: context,
-          ),
-          SurveyCard(
-            img: const AssetImage('assets/eder-chua.jpg'),
-            school: 'CIIT',
-            name: 'Eder Junior Chua',
-            title: 'Social Life of Students During the Pandemic',
-            url:'https://docs.google.com/forms/d/e/1FAIpQLSfT8JMiLP8AXRa_lmFdr-WZQJVafbGD1dsR8-5OdXP_xoH6_Q/viewform',
-            context: context,
-          ),
-          SurveyCard(
-            img: const AssetImage('assets/patrick-pelicano.jpg'),
-            school: 'CIIT',
-            name: 'Patrick Jade Pelicano',
-            title: 'PC Building Survey',
-            url:'https://docs.google.com/forms/d/e/1FAIpQLSfIFaJxTbSnK3FFWNcPN7bBOtvXT-PclRKeUZfYsFHdJCswTQ/viewform',
-            context: context,
-          ),
-          SurveyCard(
-            img: const AssetImage('assets/eder-chua.jpg'),
-            school: 'CIIT (Syntax Members)',
-            name: 'Eder Junior Chua',
-            title: 'Survey for the Upcoming Code Sessions',
-            url:'https://docs.google.com/forms/d/e/1FAIpQLSf_Bup_hipErwmAF-d2qVJ_KRaNcGFe_7Hmd19gGKEBcY06oA/viewform',
-            context: context,
-          ),
-        ],
-        padding: const EdgeInsets.all(10),
+      Scaffold(
+        backgroundColor: Colors.white70,
+        body: ListView(
+          children: [
+            SurveyCard(
+              img: const AssetImage('assets/cathryn-santos.jpg'),
+              school: 'CIIT',
+              name: 'Cathryn Santos',
+              title: 'CIIT Presidential Mock Elections',
+              url:'https://docs.google.com/forms/d/e/1FAIpQLSdYi315soEV0TroQWO9FZ-xy0TaqBYd8ufUNqka_ysHAJn9kQ/viewform',
+              context: context,
+            ),
+            SurveyCard(
+              img: const AssetImage('assets/ropher.jpg'),
+              school: 'YouTube(Public)',
+              name: 'Ropher',
+              title: 'CryptoBread Cryptocurrency Survey',
+              url:'https://docs.google.com/forms/d/e/1FAIpQLSfaKGLCtZE1PBrGhe99kfUkJKEyDPQJIuNguhNZfBbSuaJLyQ/viewform',
+              context: context,
+            ),
+            SurveyCard(
+              img: const AssetImage('assets/eder-chua.jpg'),
+              school: 'CIIT',
+              name: 'Eder Junior Chua',
+              title: 'Social Life of Students During the Pandemic',
+              url:'https://docs.google.com/forms/d/e/1FAIpQLSfT8JMiLP8AXRa_lmFdr-WZQJVafbGD1dsR8-5OdXP_xoH6_Q/viewform',
+              context: context,
+            ),
+            SurveyCard(
+              img: const AssetImage('assets/patrick-pelicano.jpg'),
+              school: 'CIIT',
+              name: 'Patrick Jade Pelicano',
+              title: 'PC Building Survey',
+              url:'https://docs.google.com/forms/d/e/1FAIpQLSfIFaJxTbSnK3FFWNcPN7bBOtvXT-PclRKeUZfYsFHdJCswTQ/viewform',
+              context: context,
+            ),
+            SurveyCard(
+              img: const AssetImage('assets/eder-chua.jpg'),
+              school: 'CIIT (Syntax Members)',
+              name: 'Eder Junior Chua',
+              title: 'Survey for the Upcoming Code Sessions',
+              url:'https://docs.google.com/forms/d/e/1FAIpQLSf_Bup_hipErwmAF-d2qVJ_KRaNcGFe_7Hmd19gGKEBcY06oA/viewform',
+              context: context,
+            ),
+            SurveyCard(
+              img: const AssetImage('assets/eder-chua.jpg'),
+              school: 'CIIT (Syntax Members)',
+              name: 'Eder Junior Chua',
+              title: 'Survey for the Upcoming Code Sessions',
+              url:'https://docs.google.com/forms/d/e/1FAIpQLSf_Bup_hipErwmAF-d2qVJ_KRaNcGFe_7Hmd19gGKEBcY06oA/viewform',
+              context: context,
+            ),
+          ],
+          padding: const EdgeInsets.all(10),
+        ),
       ),
       Container(
         color: Colors.white,
@@ -112,7 +123,7 @@ class _HomeState extends State<Home> {
                   width: double.infinity,
                   height: 50,
                   child: Align(
-                      alignment: Alignment.centerLeft,
+                      alignment: Alignment.center,
                       child: Text("LOGOUT", style: TextStyle(fontSize: 18))),
                 ),
               ),
@@ -127,6 +138,8 @@ class _HomeState extends State<Home> {
       child: Scaffold(
         backgroundColor: Colors.deepPurple[900],
         appBar: AppBar(
+          elevation: 5,
+          backgroundColor: Colors.deepPurpleAccent,
           automaticallyImplyLeading: false,
           title: const Text('Survey Says'),
         ),
@@ -173,7 +186,7 @@ class SurveyCard extends Card {
       : super(key: key);
 
   @override
-  Color? get color => Colors.blue[200];
+  Color? get color => Colors.white;
 
   @override
   ShapeBorder? get shape =>
@@ -265,7 +278,9 @@ class SurveyInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     const double padding = 20;
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        backgroundColor: Colors.deepPurpleAccent,
+      ),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
@@ -284,7 +299,7 @@ class SurveyInfo extends StatelessWidget {
                 children: [
                   CircleAvatar(
                     backgroundImage: img,
-                    radius: 40,
+                    radius: 35,
                   ),
                   Padding(
                     padding: const EdgeInsets.all(padding),
@@ -303,7 +318,7 @@ class SurveyInfo extends StatelessWidget {
                 ],
               ),
               Container(
-                height: 400,
+                height: 500,
                 child: Padding(
                   padding: const EdgeInsets.only(top: 15),
                     child:InAppWebView(
@@ -320,6 +335,9 @@ class SurveyInfo extends StatelessWidget {
                       child: SizedBox(
                         width: double.infinity,
                         child: ElevatedButton(
+                          style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all(Colors.deepPurpleAccent),
+                          ),
                           onPressed: () => _launchUrl(Uri.parse(url)),
                           child: Text('Open in Browser'),
                         ),
