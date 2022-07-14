@@ -1,5 +1,5 @@
-name: survey_says
-description: A new Flutter project.
+name: arwyn_cookbook
+description: Cookbook for Arwyn.
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
@@ -62,11 +62,10 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/logo/surveysays_black.png
-    - assets/eder-chua.jpg
-    - assets/patrick-pelicano.jpg
-    - assets/cathryn-santos.jpg
-    - assets/ropher.jpg
+    - assets/recipe/kare-kare.png
+    - assets/recipe/adobo.jpg
+    - assets/recipe/sinangag.png
+    - assets/arwyn.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

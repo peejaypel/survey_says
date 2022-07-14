@@ -27,9 +27,6 @@ class Register extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.all(20.0),
                           child: Column(children: [
-                            Row(children: [
-                              Image.asset("assets/logo/surveysays_black.png", height: 80)
-                            ]),
                             Padding(
                               padding: const EdgeInsets.fromLTRB(0, 32, 0, 0),
                               child: Container(

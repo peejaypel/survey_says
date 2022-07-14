@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:survey_says/pages/login.dart';
+import 'package:arwyn_cookbook/pages/login.dart';
 
 class Home extends StatefulWidget {
   Home({Key? key}) : super(key: key);
@@ -28,52 +28,62 @@ class _HomeState extends State<Home> {
         backgroundColor: Colors.white70,
         body: ListView(
           children: [
-            SurveyCard(
-              img: const AssetImage('assets/cathryn-santos.jpg'),
-              school: 'CIIT',
-              name: 'Cathryn Santos',
-              title: 'CIIT Presidential Mock Elections',
-              url:'https://docs.google.com/forms/d/e/1FAIpQLSdYi315soEV0TroQWO9FZ-xy0TaqBYd8ufUNqka_ysHAJn9kQ/viewform',
+            RecipeCard(
+              imageLocation: 'assets/recipe/kare-kare.png',
+              name: 'Kare Kare Recipe',
+              ingredients: """3 lbs oxtail cut in 2 inch slices 
+you an also use tripe or beef slices
+1 piece small banana flower bud sliced
+1 bundle pechay or bok choy
+1 bundle string beans cut into 2 inch slices
+4 pieces eggplants sliced
+1 cup ground peanuts
+1/2 cup peanut butter
+1/2 cup shrimp paste
+34 Ounces water about 1 Liter
+1/2 cup annatto seeds soaked in a cup of water
+1/2 cup toasted ground rice
+1 tbsp garlic minced
+1 piece onion chopped
+salt and pepper""",
+              url: 'https://pin.it/3wPkpN9',
               context: context,
             ),
-            SurveyCard(
-              img: const AssetImage('assets/ropher.jpg'),
-              school: 'YouTube(Public)',
-              name: 'Ropher',
-              title: 'CryptoBread Cryptocurrency Survey',
-              url:'https://docs.google.com/forms/d/e/1FAIpQLSfaKGLCtZE1PBrGhe99kfUkJKEyDPQJIuNguhNZfBbSuaJLyQ/viewform',
+            RecipeCard(
+              imageLocation: 'assets/recipe/adobo.jpg',
+              name: 'Filipino-Style Chicken Adobo',
+              ingredients:
+"""1 tablespoon (15ml) canola oil 
+or other neutral oil
+4 bone-in, skin-on chicken legs,
+separated into thighs and drumsticks
+(about 2 1/2 pounds; 1.15kg)
+Kosher salt
+8 cloves garlic, thinly sliced
+2 whole fresh bay leaves 
+(or 3 whole dried bay leaves)
+1 1/2 teaspoons whole black peppercorns
+1 1/4 cups (300ml) water
+1 cup (240ml) soy sauce
+1 cup (240ml) rice vinegar (see notes). Steamed white rice or garlic fried rice, for serving
+""",
+              //https://assets.pinterest.com/ext/embed.html?id=829014243904125706
+              url:
+                  'https://pin.it/2sTgsbZ',
               context: context,
             ),
-            SurveyCard(
-              img: const AssetImage('assets/eder-chua.jpg'),
-              school: 'CIIT',
-              name: 'Eder Junior Chua',
-              title: 'Social Life of Students During the Pandemic',
-              url:'https://docs.google.com/forms/d/e/1FAIpQLSfT8JMiLP8AXRa_lmFdr-WZQJVafbGD1dsR8-5OdXP_xoH6_Q/viewform',
-              context: context,
-            ),
-            SurveyCard(
-              img: const AssetImage('assets/patrick-pelicano.jpg'),
-              school: 'CIIT',
-              name: 'Patrick Jade Pelicano',
-              title: 'PC Building Survey',
-              url:'https://docs.google.com/forms/d/e/1FAIpQLSfIFaJxTbSnK3FFWNcPN7bBOtvXT-PclRKeUZfYsFHdJCswTQ/viewform',
-              context: context,
-            ),
-            SurveyCard(
-              img: const AssetImage('assets/eder-chua.jpg'),
-              school: 'CIIT (Syntax Members)',
-              name: 'Eder Junior Chua',
-              title: 'Survey for the Upcoming Code Sessions',
-              url:'https://docs.google.com/forms/d/e/1FAIpQLSf_Bup_hipErwmAF-d2qVJ_KRaNcGFe_7Hmd19gGKEBcY06oA/viewform',
-              context: context,
-            ),
-            SurveyCard(
-              img: const AssetImage('assets/eder-chua.jpg'),
-              school: 'CIIT (Syntax Members)',
-              name: 'Eder Junior Chua',
-              title: 'Survey for the Upcoming Code Sessions',
-              url:'https://docs.google.com/forms/d/e/1FAIpQLSf_Bup_hipErwmAF-d2qVJ_KRaNcGFe_7Hmd19gGKEBcY06oA/viewform',
+            RecipeCard(
+              imageLocation: 'assets/recipe/sinangag.png',
+              name: 'Sinangag (Filipino Garlic Fried Rice)',
+              ingredients:
+"""3 Tbsp vegetable oil
+12 cloves garlic, minced
+4 c cooked rice, cooled and dry
+¼ tsp salt
+Dash fresh ground pepper
+1 scallion, thinly sliced (for garnish)
+4 eggs (optional, for serving)""",
+              url: 'https://pin.it/7kBRwtf',
               context: context,
             ),
           ],
@@ -91,8 +101,8 @@ class _HomeState extends State<Home> {
               padding: const EdgeInsets.all(20),
               child: Row(
                 children: [
-                  CircleAvatar(
-                    backgroundImage: AssetImage('assets/eder-chua.jpg'),
+                  const CircleAvatar(
+                    backgroundImage: AssetImage('assets/arwyn.png'),
                     radius: 30,
                   ),
                   Padding(
@@ -141,7 +151,7 @@ class _HomeState extends State<Home> {
           elevation: 5,
           backgroundColor: Colors.deepPurpleAccent,
           automaticallyImplyLeading: false,
-          title: const Text('Survey Says'),
+          title: const Text('Arwyn Cookbook'),
         ),
         body: Center(
           child: _widgetOptions.elementAt(_selectedIndex),
@@ -167,20 +177,18 @@ class _HomeState extends State<Home> {
   }
 }
 
-class SurveyCard extends Card {
-  final AssetImage img;
-  final String school;
+class RecipeCard extends Card {
+  final String imageLocation;
   final String name;
-  final String title;
+  final String ingredients;
   final String url;
   final BuildContext context;
 
-  const SurveyCard(
+  const RecipeCard(
       {Key? key,
-      required this.img,
-      required this.school,
+      required this.imageLocation,
       required this.name,
-      required this.title,
+      required this.ingredients,
       required this.url,
       required this.context})
       : super(key: key);
@@ -196,61 +204,51 @@ class SurveyCard extends Card {
   Widget? get child => GestureDetector(
         behavior: HitTestBehavior.translucent,
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(15, 15, 15, 0),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  CircleAvatar(
-                    backgroundImage: img,
-                    radius: 30,
-                  ),
-                  Container(
-                    height: 60,
-                    constraints: BoxConstraints(
-                        maxWidth: MediaQuery.of(context).size.width - 134),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 5, horizontal: 10),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Flexible(
-                            child: Text(name),
-                          ),
-                          Expanded(
-                            child: Text(
-                              school,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ),
-                        ],
+            ClipRRect(
+                child: Image.asset(imageLocation),
+                borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(8.0),
+                    topRight: Radius.circular(8.0))),
+            Container(
+              height: 350,
+              constraints: BoxConstraints(
+                  maxWidth: MediaQuery.of(context).size.width - 134),
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(0, 5, 0, 5),
+                      child: Flexible(
+                        child: Text(name,
+                            style: const TextStyle(
+                                fontSize: 32, fontWeight: FontWeight.bold)),
                       ),
                     ),
-                  ),
-                ],
+                    Expanded(
+                      flex: 2,
+                      child: Text(ingredients,
+                          style: const TextStyle(fontSize: 16),
+                          overflow: TextOverflow.ellipsis),
+                    ),
+                  ],
+                ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(15, 0, 15, 25),
-              child: Text(
-                title,
-                style: TextStyle(fontSize: 20),
-              ),
-            )
           ],
         ),
         onTap: () {
           Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => SurveyInfo(
-                      img: img,
-                      school: school,
+                builder: (context) => RecipeInfo(
+                      img: Image.asset(imageLocation),
+                      ingredients: ingredients,
                       name: name,
-                      title: title,
                       url: url,
                     )),
           );
@@ -258,19 +256,17 @@ class SurveyCard extends Card {
       );
 }
 
-class SurveyInfo extends StatelessWidget {
-  final AssetImage img;
-  final String school;
+class RecipeInfo extends StatelessWidget {
+  final Image img;
   final String name;
-  final String title;
+  final String ingredients;
   final String url;
 
-  const SurveyInfo(
+  const RecipeInfo(
       {Key? key,
       required this.img,
-      required this.school,
       required this.name,
-      required this.title,
+      required this.ingredients,
       required this.url})
       : super(key: key);
 
@@ -281,68 +277,38 @@ class SurveyInfo extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.deepPurpleAccent,
       ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
+      body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(padding),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Flexible(
-                child: Text(
-                  title,
-                  style: Theme.of(context).textTheme.headline4,
-                ),
-              ),
-              Row(
-                children: [
-                  CircleAvatar(
-                    backgroundImage: img,
-                    radius: 35,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(padding),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          school,
-                        ),
-                        Text(
-                          name,
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
+              Text(name,
+                  style: const TextStyle(
+                      fontSize: 32, fontWeight: FontWeight.bold)),
               Container(
-                height: 300,
+                height: 1000,
                 child: Padding(
-                  padding: const EdgeInsets.only(top: 15),
-                    child:InAppWebView(
-                      initialUrlRequest: URLRequest(
-                          url: Uri.parse(url)
-                      ),
-                    )
-                ),
+                    padding: const EdgeInsets.only(top: 15),
+                    child: InAppWebView(
+                      initialUrlRequest: URLRequest(url: Uri.parse(url)),
+                    )),
               ),
               Container(
-                  child:
-                    Padding(
-                      padding: const EdgeInsets.only(top: 20),
-                      child: SizedBox(
-                        width: double.infinity,
-                        child: ElevatedButton(
-                          style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all(Colors.deepPurpleAccent),
-                          ),
-                          onPressed: () => _launchUrl(Uri.parse(url)),
-                          child: Text('Open in Browser'),
-                        ),
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 20),
+                  child: SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStateProperty.all(Colors.deepPurpleAccent),
                       ),
+                      onPressed: () => _launchUrl(Uri.parse(url)),
+                      child: Text('Open in Browser'),
                     ),
+                  ),
+                ),
               )
             ],
           ),
@@ -351,6 +317,7 @@ class SurveyInfo extends StatelessWidget {
     );
   }
 }
+
 _launchUrl(Uri _url) async {
   if (!await launchUrl(_url)) throw 'Could not launch $_url';
 }
